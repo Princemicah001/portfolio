@@ -14,6 +14,17 @@ export const useOpposingSlideIn = (selector = "[data-oppose]") => {
       return;
     }
 
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const body = document.body;
+    body?.classList.add("oppose-init");
+
+    if (motionQuery.matches) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      body?.classList.remove("oppose-init");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -32,7 +43,10 @@ export const useOpposingSlideIn = (selector = "[data-oppose]") => {
 
     elements.forEach((element) => observer.observe(element));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      body?.classList.remove("oppose-init");
+    };
   }, [selector]);
 };
 

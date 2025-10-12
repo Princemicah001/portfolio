@@ -33,7 +33,7 @@ export const Hero = () => {
             data-oppose="left"
           >
             <span className="text-sm font-medium text-foreground/80">
-              Law. Tech. Build
+              Law Student. Builder. Tech Enthusiast.
             </span>
           </div>
 

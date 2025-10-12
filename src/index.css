@@ -283,14 +283,17 @@ All colors MUST be HSL.
 
   [data-oppose] {
     position: relative;
-    opacity: 0;
-    transform: translate3d(var(--oppose-x, 0), var(--oppose-y, 40px), 0) scale(0.96);
     transition: transform 720ms cubic-bezier(0.22, 0.82, 0.4, 1), opacity 720ms ease, filter 720ms ease;
     will-change: transform, opacity;
+  }
+
+  body.oppose-init [data-oppose] {
+    opacity: 0;
+    transform: translate3d(var(--oppose-x, 0), var(--oppose-y, 40px), 0) scale(0.96);
     filter: blur(6px);
   }
 
-  [data-oppose].is-visible {
+  body.oppose-init [data-oppose].is-visible {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     filter: blur(0);
@@ -540,6 +543,39 @@ All colors MUST be HSL.
 
   .card-holographic:hover::after {
     transform: rotate(20deg);
+  }
+
+  .capability-card {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .capability-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at top left,
+      hsl(var(--primary) / 0.22),
+      transparent 58%
+    );
+    opacity: 0.5;
+    transition: opacity 320ms ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .dark .capability-card::before {
+    background: radial-gradient(
+      circle at top left,
+      hsl(var(--primary) / 0.36),
+      transparent 62%
+    );
+    opacity: 0.38;
+  }
+
+  .capability-card:hover::before {
+    opacity: 0.7;
   }
 
   .btn-liquid {
@@ -972,87 +1008,4 @@ All colors MUST be HSL.
     background: hsl(var(--card));
     z-index: -1;
   }
-}
-.card-holographic {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-holographic::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.card-holographic:hover::before {
-  opacity: 0.15;
-}
-
-/* 🔄 Flip card effect */
-/* Flip card structure */
-.flip-card {
-  background: transparent;
-  width: 250px;
-  height: 320px;
-  perspective: 1000px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-/* Glass effect */
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.glass-card:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-  transform: translateY(-6px);
-}
-
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-
-/* Scroll reveal */
-.hidden-card {
-  opacity: 0;
-  transform: translateY(40px) scale(0.95);
-}
-
-.show-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: all 0.6s ease-out;
 }

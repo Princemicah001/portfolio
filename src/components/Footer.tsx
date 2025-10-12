@@ -29,7 +29,7 @@ export const Footer = () => {
               className="flex items-center space-x-2 font-display font-bold text-xl lg:text-2xl text-primary transition-spring hover:scale-105 bg-none"
             >
               <img
-              src="/icon.png"
+              src="dist/icon.png"
               alt="Prince Micah Logo"
               className="w-10 h-10 rounded-xl object-cover"
               />

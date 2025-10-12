@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import Typewriter from "@/components/Typewriter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
 
 const testimonials = [
   {
@@ -43,23 +44,22 @@ export const Testimonials = () => {
     <section className="py-20 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
+        <Reveal className="text-center mb-16" data-oppose="up">
           <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
             <Typewriter text="What People Say" className="typer" />
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Feedback from colleagues, clients, and collaborators
           </p>
-        </div>
+        </Reveal>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="p-8 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+            <Reveal key={index} data-oppose={index % 2 === 0 ? "left" : "right"}>
+              <Card
+                className="p-8 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium"
+              >
               <Quote className="h-8 w-8 text-primary/30 mb-4" />
               <p className="text-lg leading-relaxed mb-6 text-foreground/90">
                 "{testimonial.quote}"
@@ -80,7 +80,8 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </div>
-            </Card>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>
