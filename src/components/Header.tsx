@@ -55,7 +55,7 @@ export const Header = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-2 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-muted transition-smooth"
+                  className="relative px-4 py-2 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-muted transition-smooth menu-transition hover-explosive"
                 >
                   {item.label}
                 </a>
@@ -67,7 +67,7 @@ export const Header = () => {
               <ThemeToggle />
               <Button
                 asChild
-                className="hidden sm:inline-flex rounded-full px-6 transition-spring hover:scale-105"
+                className="hidden sm:inline-flex rounded-full px-6 transition-spring hover:scale-105 btn-liquid button-animate"
               >
                 <a href="#contact">Contact</a>
               </Button>
@@ -104,14 +104,14 @@ export const Header = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 rounded-2xl text-base font-medium text-foreground/70 hover:text-foreground hover:bg-muted transition-smooth"
+                className="relative block px-4 py-3 rounded-2xl text-base font-medium text-foreground/70 hover:text-foreground hover:bg-muted transition-smooth hover-explosive"
               >
                 {item.label}
               </a>
             ))}
             <Button
               asChild
-              className="w-full rounded-2xl mt-4"
+              className="w-full rounded-2xl mt-4 btn-liquid button-animate"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <a href="#contact">Contact</a>

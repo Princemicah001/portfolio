@@ -57,7 +57,7 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-muted/30">
+    <section id="skills" className="py-20 lg:py-32 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -70,12 +70,29 @@ export const Skills = () => {
             </p>
           </div>
 
+          <div className="cube-scene mb-16">
+            <div className="cube">
+              {[
+                "Legal Tech",
+                "Networks",
+                "Android",
+                "UI/UX",
+                "Research",
+                "Automation",
+              ].map((face, index) => (
+                <div key={index} className="cube-face text-sm sm:text-base text-center px-4">
+                  {face}
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Skills Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
               <Card
                 key={index}
-                className="p-6 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium animate-fade-in-up"
+                className="p-6 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium animate-fade-in-up card-holographic"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center space-x-3 mb-6">

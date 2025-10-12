@@ -1,8 +1,11 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Code, Users, Rocket } from "lucide-react";
 import Typewriter from "@/components/Typewriter";
 
 export const Hero = () => {
+  const wavyTagline = "I build lightweight Android tools, high-performing networks, and human-friendly UIs.";
+
   return (
     <section
       id="hero"
@@ -11,7 +14,10 @@ export const Hero = () => {
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-background/90 to-background/95 z-10" />
-        {/* Placeholder for video - will be replaced with actual video */}
+        <div className="bg-floating-balls absolute inset-0 pointer-events-none" data-parallax data-speed="0.04" />
+        <div className="bg-color-columns parallax-layer pointer-events-none" data-parallax data-speed="0.06" />
+        <div className="bg-color-drip absolute inset-0 mix-blend-screen pointer-events-none" data-parallax data-speed="0.02" />
+        <div className="bg-shooting-stars absolute inset-0 opacity-70 pointer-events-none" data-parallax data-speed="0.08" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-background opacity-50">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_hsl(var(--primary)/0.15),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,_hsl(var(--secondary)/0.15),transparent_50%)]" />
@@ -29,13 +35,31 @@ export const Hero = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-primary-foreground leading-tight">
-            Prince Micah — <Typewriter text="Law Student & Tech Creator" className="typer text-transparent bg-clip-text bg-gradient-to-r from-primary-foreground to-primary-foreground/70" />
+          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-primary-foreground leading-tight space-y-2">
+            <span
+              className="block text-glitch text-transparent bg-clip-text bg-gradient-to-r from-primary-foreground via-primary-foreground/80 to-primary-foreground/60"
+              data-text="Prince Micah"
+            >
+              Prince Micah
+            </span>
+            <span className="block text-split">
+              <span className="text-foreground/80">—</span>
+              <span className="text-3d-jump text-neon">
+                <Typewriter
+                  text="Law Student & Tech Creator"
+                  className="typer"
+                />
+              </span>
+            </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed">
-            I build lightweight Android tools, high-performing networks, and human-friendly UIs.
+          <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed text-wavy">
+            {Array.from(wavyTagline).map((char, index) => (
+              <span key={`${char}-${index}`} style={{ "--index": index } as React.CSSProperties}>
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
           </p>
 
           {/* CTAs */}
@@ -43,7 +67,7 @@ export const Hero = () => {
             <Button
               asChild
               size="lg"
-              className="rounded-full px-8 py-6 text-lg font-semibold transition-spring hover:scale-105 shadow-glow"
+              className="rounded-full px-8 py-6 text-lg font-semibold transition-spring hover:scale-105 shadow-glow btn-liquid button-animate"
             >
               <a href="#contact">
                 Work with me
@@ -54,7 +78,7 @@ export const Hero = () => {
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full px-8 py-6 text-lg font-semibold bg-background/10 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground hover:bg-background/20 transition-spring hover:scale-105"
+              className="rounded-full px-8 py-6 text-lg font-semibold bg-background/10 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground hover:bg-background/20 transition-spring hover:scale-105 button-animate"
             >
               <a href="#projects">View projects</a>
             </Button>
@@ -70,7 +94,7 @@ export const Hero = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-background/10 backdrop-blur-sm border border-border/10 transition-spring hover:scale-105 hover:shadow-medium"
+                className="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-background/10 backdrop-blur-sm border border-border/10 transition-spring hover:scale-105 hover:shadow-medium card-holographic gradient-border"
               >
                 <stat.icon className="h-6 w-6 text-primary-foreground/80" />
                 <div className="font-display font-bold text-2xl text-primary-foreground">

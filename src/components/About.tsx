@@ -94,11 +94,11 @@ export const About = () => {
           {/* Left Column - Portrait Card */}
           <Reveal className="space-y-8 reveal">
             <Card className="p-8 shadow-medium rounded-3xl slideshow-card">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 flex items-center justify-center">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 flex items-center justify-center clip-reveal">
                 <Slideshow images={["dist/micah.jpeg"]} />
               </div>
               <h2 className="font-display font-bold text-3xl mb-4">
-                <Typewriter text="Prince Micah" className="typer" typingSpeed={110} deletingSpeed={60} pause={2000} />
+                <Typewriter text="Prince Micah" className="typer text-neon" typingSpeed={110} deletingSpeed={60} pause={2000} />
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 I'm a Nairobi-based builder focused on practical engineering—Android tools that
@@ -114,8 +114,11 @@ export const About = () => {
           {/* Right Column - Story & Principles */}
           <Reveal className="space-y-8 reveal reveal-delay-200">
             <div>
-              <h3 className="font-display font-bold text-4xl lg:text-5xl mb-6 typer">
-                Building with Purpose
+              <h3 className="font-display font-bold text-4xl lg:text-5xl mb-6">
+                <span className="text-split">
+                  <span>Building</span>
+                  <span>with Purpose</span>
+                </span>
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Growing up in Kenya's dynamic tech scene, I learned early that great engineering
@@ -183,9 +186,28 @@ export const About = () => {
                 </li>
               </ul>
             </Card>
+            <div className="double-sided-card rounded-3xl mt-10 relative">
+              <div className="double-sided-card-inner rounded-3xl min-h-[260px]">
+                <div className="double-sided-face front p-8 bg-gradient-to-br from-primary/10 via-background to-secondary/10 rounded-3xl flex flex-col justify-center gap-4">
+                  <h4 className="font-display text-2xl mb-3 text-3d-jump">Legal-Tech Mission</h4>
+                  <p className="text-muted-foreground">
+                    Fusing Mount Kenya University law insights with engineering rigour to design
+                    justice-first digital services across Kenya and East Africa.
+                  </p>
+                </div>
+                <div className="double-sided-face back p-8 bg-gradient-to-br from-secondary/15 via-background to-primary/10 rounded-3xl flex flex-col justify-center gap-3">
+                  <h4 className="font-display text-2xl mb-3 text-neon">Focus</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>AI-assisted research tooling for law students</li>
+                    <li>Automated compliance systems for startups</li>
+                    <li>Community legal education in Nairobi & Budalangi</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
-    </section> 
+    </section>
   );
 };
