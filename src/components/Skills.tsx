@@ -57,11 +57,11 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-muted/30 relative overflow-hidden">
+    <section id="skills" className="py-20 lg:py-32 bg-muted/20 dark:bg-muted/40 relative overflow-hidden">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in-up">
+          <div className="text-center mb-16 animate-fade-in-up" data-oppose="up">
             <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
               <Typewriter text="Capabilities" className="typer" />
             </h2>
@@ -70,7 +70,7 @@ export const Skills = () => {
             </p>
           </div>
 
-          <div className="cube-scene mb-16" aria-hidden="true">
+          <div className="cube-scene mb-16" aria-hidden="true" data-oppose="up">
             <div className="cube reflective-cube">
               {[
                 "Legal Tech",
@@ -92,11 +92,12 @@ export const Skills = () => {
             {skillCategories.map((category, index) => (
               <Card
                 key={index}
-                className="p-6 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium animate-fade-in-up card-holographic"
+                data-oppose={index % 2 === 0 ? "left" : "right"}
+                className="p-6 rounded-3xl border border-border/40 bg-background/80 dark:bg-background/30 backdrop-blur-xl hover:border-primary/40 transition-spring hover:shadow-medium card-holographic"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 rounded-xl bg-primary/10">
+                  <div className="p-3 rounded-xl bg-primary/15">
                     <category.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="font-display font-semibold text-xl">{category.title}</h3>
@@ -107,10 +108,7 @@ export const Skills = () => {
                       key={skillIndex}
                       className="flex items-start justify-between space-x-3"
                     >
-                      <Badge
-                        variant="secondary"
-                        className="rounded-full px-3 py-1 font-medium"
-                      >
+                      <Badge variant="secondary" className="rounded-full px-3 py-1 font-medium bg-secondary/20 text-foreground">
                         {skill.name}
                       </Badge>
                       <span className="text-xs text-muted-foreground whitespace-nowrap">

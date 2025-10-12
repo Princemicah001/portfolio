@@ -26,18 +26,24 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
+        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up" data-oppose="up">
           {/* Eyebrow */}
-          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-background/10 backdrop-blur-sm border border-border/20">
-            <span className="text-sm font-medium text-primary-foreground/90">
+          <div
+            className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-background/70 dark:bg-background/30 backdrop-blur-xl border border-border/40 shadow-soft"
+            data-oppose="left"
+          >
+            <span className="text-sm font-medium text-foreground/80">
               Law Student. Builder. Tech Enthusiast.
             </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-primary-foreground leading-tight space-y-2">
+          <h1
+            className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-foreground leading-tight space-y-2"
+            data-oppose="right"
+          >
             <span
-              className="block text-glitch text-transparent bg-clip-text bg-gradient-to-r from-primary-foreground via-primary-foreground/80 to-primary-foreground/60"
+              className="block text-glitch text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary"
               data-text="Prince Micah"
             >
               Prince Micah
@@ -54,7 +60,10 @@ export const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed text-wavy">
+          <p
+            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed text-wavy"
+            data-oppose="left"
+          >
             {Array.from(wavyTagline).map((char, index) => (
               <span key={`${char}-${index}`} style={{ "--index": index } as React.CSSProperties}>
                 {char === " " ? "\u00A0" : char}
@@ -63,7 +72,7 @@ export const Hero = () => {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4" data-oppose="right">
             <Button
               asChild
               size="lg"
@@ -94,13 +103,14 @@ export const Hero = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-background/10 backdrop-blur-sm border border-border/10 transition-spring hover:scale-105 hover:shadow-medium card-holographic gradient-border"
+                data-oppose={index % 2 === 0 ? "left" : "right"}
+                className="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-background/70 dark:bg-background/40 backdrop-blur-xl border border-border/30 transition-spring hover:scale-105 hover:shadow-medium card-holographic gradient-border"
               >
-                <stat.icon className="h-6 w-6 text-primary-foreground/80" />
-                <div className="font-display font-bold text-2xl text-primary-foreground">
+                <stat.icon className="h-6 w-6 text-primary" />
+                <div className="font-display font-bold text-2xl text-foreground">
                   {stat.value}
                 </div>
-                <div className="text-sm text-primary-foreground/70">
+                <div className="text-sm text-muted-foreground">
                   {stat.label}
                 </div>
               </div>

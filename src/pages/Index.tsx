@@ -12,10 +12,12 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { useScrollTheme } from "@/hooks/useScrollTheme";
 import { useParallax } from "@/hooks/useParallax";
+import { useOpposingSlideIn } from "@/hooks/useOpposingSlideIn";
 
 const Index = () => {
   useScrollTheme();
   useParallax();
+  useOpposingSlideIn();
 
   return (
     <div className="min-h-screen relative">
