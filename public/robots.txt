@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://princemicah.com/sitemap.xml
+Sitemap: https://princemicahojiambo.netlify.app/sitemap.xml
