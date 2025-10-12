@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import Typewriter from "@/components/Typewriter";
 import { Badge } from "@/components/ui/badge";
 import { Smartphone, Network, Code, Palette, CreditCard } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 export const Skills = () => {
   const skillCategories = [
@@ -57,11 +58,14 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-muted/20 dark:bg-muted/40 relative overflow-hidden">
+    <section
+      id="skills"
+      className="py-20 lg:py-32 bg-muted/20 dark:bg-muted/40 relative overflow-hidden"
+    >
       <div className="container mx-auto px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in-up" data-oppose="up">
+          {/* Header */}
+          <div className="text-center mb-20" data-oppose="up">
             <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
               <Typewriter text="Capabilities" className="typer" />
             </h2>
@@ -70,54 +74,87 @@ export const Skills = () => {
             </p>
           </div>
 
-          <div className="cube-scene mb-16" aria-hidden="true" data-oppose="up">
-            <div className="cube reflective-cube">
-              {[
-                "Legal Tech",
-                "Networks",
-                "Android",
-                "UI/UX",
-                "Research",
-                "Automation",
-              ].map((face, index) => (
-                <div key={index} className="cube-face text-sm sm:text-base text-center px-4">
-                  {face}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, index) => (
-              <Card
-                key={index}
-                data-oppose={index % 2 === 0 ? "left" : "right"}
-                className="p-6 rounded-3xl border border-border/40 bg-background/80 dark:bg-background/30 backdrop-blur-xl hover:border-primary/40 transition-spring hover:shadow-medium card-holographic"
-                style={{ animationDelay: `${index * 0.1}s` }}
+          {/* Grid of Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {skillCategories.map((category, idx) => (
+              <Reveal
+                key={idx}
+                data-oppose={idx % 2 === 0 ? "left" : "right"}
+                className="transform transition-transform duration-500 hover:-translate-y-2"
               >
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 rounded-xl bg-primary/15">
-                    <category.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="font-display font-semibold text-xl">{category.title}</h3>
-                </div>
-                <div className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div
-                      key={skillIndex}
-                      className="flex items-start justify-between space-x-3"
-                    >
-                      <Badge variant="secondary" className="rounded-full px-3 py-1 font-medium bg-secondary/20 text-foreground">
-                        {skill.name}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground whitespace-nowrap">
-                        {skill.project}
-                      </span>
+                <Card
+                  className="
+                    relative
+                    p-8
+                    rounded-3xl
+                    backdrop-blur-2xl
+                    bg-white/10 dark:bg-gray-800/30
+                    border
+                    border-white/20 dark:border-gray-600/30
+                    shadow-lg
+                    hover:shadow-2xl
+                    transition-all
+                    duration-500
+                    overflow-hidden
+                  "
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  {/* Gradient glow overlay */}
+                  <div
+                    className="
+                      absolute inset-0
+                      bg-gradient-to-br
+                      from-primary/20
+                      via-transparent
+                      to-secondary/20
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-opacity
+                      duration-700
+                    "
+                  />
+
+                  {/* Icon */}
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 rounded-2xl bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300">
+                      <category.icon className="h-10 w-10 text-primary" />
                     </div>
-                  ))}
-                </div>
-              </Card>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-center font-bold text-2xl mb-6 text-foreground">
+                    {category.title}
+                  </h3>
+
+                  {/* Skill list */}
+                  <div className="space-y-4">
+                    {category.skills.map((skill, sidx) => (
+                      <div
+                        key={sidx}
+                        className="
+                          flex items-center justify-between
+                          bg-white/20 dark:bg-gray-700/25
+                          rounded-xl
+                          px-4 py-2
+                          hover:bg-white/30 dark:hover:bg-gray-600/35
+                          transition-colors
+                          duration-300
+                        "
+                      >
+                        <Badge
+                          variant="secondary"
+                          className="rounded-full px-4 py-1 font-medium bg-secondary/20 text-foreground text-sm"
+                        >
+                          {skill.name}
+                        </Badge>
+                        <span className="text-xs text-muted-foreground whitespace-nowrap">
+                          {skill.project}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
