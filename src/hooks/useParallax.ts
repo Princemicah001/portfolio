@@ -12,6 +12,15 @@ export const useParallax = (selector = "[data-parallax]") => {
 
     if (!elements.length) return;
 
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (motionQuery.matches) {
+      elements.forEach((element) => {
+        element.style.transform = "";
+      });
+      return;
+    }
+
     let ticking = false;
 
     const update = () => {

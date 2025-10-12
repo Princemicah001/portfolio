@@ -1,73 +1,8 @@
-import React, { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { Card } from "@/components/ui/card";
-import { Download, Lightbulb, Target, Zap } from "lucide-react";
-import useInView from "@/hooks/useInView";
-
-type RevealProps = React.HTMLAttributes<HTMLDivElement> & {
-  children: React.ReactNode;
-};
-
-function Reveal({ children, className = "", ...rest }: RevealProps) {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.12 });
-  return (
-    <div
-      ref={ref as any}
-      className={`${className} ${inView ? "is-visible" : ""}`.trim()}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-}
-
-function Typewriter({
-  text = "",
-  className = "",
-  typingSpeed = 80,
-  deletingSpeed = 40,
-  pause = 1400,
-}: {
-  text: string;
-  className?: string;
-  typingSpeed?: number;
-  deletingSpeed?: number;
-  pause?: number;
-}) {
-  // Looping typewriter: types the string, pauses, deletes it, pauses, repeat.
-  const [display, setDisplay] = React.useState("");
-  const [isDeleting, setIsDeleting] = React.useState(false);
-
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!isDeleting) {
-      // Typing phase
-      if (display.length < text.length) {
-        timeout = setTimeout(() => {
-          setDisplay(text.slice(0, display.length + 1));
-        }, typingSpeed);
-      } else {
-        // finished typing, pause then start deleting
-        timeout = setTimeout(() => setIsDeleting(true), pause);
-      }
-    } else {
-      // Deleting phase
-      if (display.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplay(text.slice(0, display.length - 1));
-        }, deletingSpeed);
-      } else {
-        // finished deleting, pause then start typing again
-        timeout = setTimeout(() => setIsDeleting(false), 300);
-      }
-    }
-
-    return () => clearTimeout(timeout);
-  }, [display, isDeleting, text, typingSpeed, deletingSpeed, pause]);
-
-  return <span className={className}>{display}</span>;
-}
+import { Lightbulb, Target, Zap } from "lucide-react";
+import Typewriter from "@/components/Typewriter";
+import Reveal from "@/components/ui/Reveal";
 
 function Slideshow({ images }: { images: string[] }) {
   const [i, setI] = React.useState(0);
@@ -82,6 +17,8 @@ function Slideshow({ images }: { images: string[] }) {
           key={idx}
           src={src}
           alt="Portrait of Prince Micah Ojiambo"
+          loading="lazy"
+          decoding="async"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             idx === i ? "opacity-100" : "opacity-0"
           }`}
@@ -97,7 +34,7 @@ export const About = () => {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left Column - Portrait Card */}
-          <Reveal className="space-y-8 reveal" data-oppose="left">
+          <Reveal className="space-y-8" data-oppose="left">
             <Card className="p-8 shadow-medium rounded-3xl slideshow-card bg-background/80 dark:bg-background/40 border border-border/40 backdrop-blur-xl">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/25 via-background/60 to-secondary/20 mb-6 flex items-center justify-center clip-reveal">
                 <Slideshow images={["dist/micah.jpeg"]} />
@@ -105,19 +42,15 @@ export const About = () => {
               <h2 className="font-display font-bold text-3xl mb-4">
                 <Typewriter text="Prince Micah" className="typer text-neon" typingSpeed={110} deletingSpeed={60} pause={2000} />
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed">
                 I'm a Nairobi-based builder focused on practical engineering—Android tools that
                 run on modest hardware, Responsive websites with well defined edge cases and future proof.
               </p>
-             {/* <Button className="w-full rounded-2xl transition-spring hover:scale-105" size="lg">
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
-              </Button>*/}
             </Card>
           </Reveal>
 
           {/* Right Column - Story & Principles */}
-          <Reveal className="space-y-8 reveal reveal-delay-200" data-oppose="right">
+          <Reveal className="space-y-8 reveal-delay-200" data-oppose="right">
             <div>
               <h3 className="font-display font-bold text-4xl lg:text-5xl mb-6">
                 <span className="text-split">

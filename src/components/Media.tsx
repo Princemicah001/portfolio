@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
 import Typewriter from "@/components/Typewriter";
+import Reveal from "@/components/ui/Reveal";
 
 const mediaItems = [
   {
@@ -39,24 +40,23 @@ export const Media = () => {
     <section id="media" className="py-20 lg:py-32">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
+        <Reveal className="text-center mb-16" data-oppose="up">
           <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
             <Typewriter text="STORIES" className="typer" />
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Visual stories from projects—demos, tutorials, and creative work
           </p>
-        </div>
+        </Reveal>
 
         {/* Media Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {mediaItems.map((item, index) => (
-            <Card
-              key={index}
-              className="group overflow-hidden rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-large cursor-pointer animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Video Thumbnail 
+            <Reveal key={index} data-oppose={index % 2 === 0 ? "left" : "right"}>
+              <Card
+                className="group overflow-hidden rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-large cursor-pointer"
+              >
+              {/* Video Thumbnail
               <div className={`aspect-[9/16] ${item.thumbnail} relative overflow-hidden`}>
                 <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-smooth">
                   <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-glow group-hover:scale-110 transition-spring">
@@ -78,7 +78,8 @@ export const Media = () => {
                   {item.role}
                 </Badge>
               </div>
-            </Card>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>
