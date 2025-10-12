@@ -283,14 +283,17 @@ All colors MUST be HSL.
 
   [data-oppose] {
     position: relative;
-    opacity: 0;
-    transform: translate3d(var(--oppose-x, 0), var(--oppose-y, 40px), 0) scale(0.96);
     transition: transform 720ms cubic-bezier(0.22, 0.82, 0.4, 1), opacity 720ms ease, filter 720ms ease;
     will-change: transform, opacity;
+  }
+
+  body.oppose-init [data-oppose] {
+    opacity: 0;
+    transform: translate3d(var(--oppose-x, 0), var(--oppose-y, 40px), 0) scale(0.96);
     filter: blur(6px);
   }
 
-  [data-oppose].is-visible {
+  body.oppose-init [data-oppose].is-visible {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     filter: blur(0);
