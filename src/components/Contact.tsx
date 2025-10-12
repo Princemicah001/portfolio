@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, Send, Github, Linkedin, MessageSquare, MapPin, Clock, Instagram } from "lucide-react";
 import Typewriter from "@/components/Typewriter";
+import Reveal from "@/components/ui/Reveal";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ export const Contact = () => {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in-up">
+          <Reveal className="text-center mb-16" data-oppose="up">
             <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
               <Typewriter text="Let's build something useful" className="typer" />
             </h2>
@@ -53,65 +54,75 @@ export const Contact = () => {
               Available for collaborations, internships, and client work. I'm always excited to
               discuss new projects and opportunities.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Contact Form */}
-            <Card className="lg:col-span-3 p-8 rounded-3xl shadow-medium">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
+            <Reveal className="lg:col-span-3" data-oppose="left">
+              <Card className="p-8 rounded-3xl shadow-medium">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">Name</label>
+                      <Input
+                        id="name"
+                        value={formData.name}
+                        autoComplete="name"
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Your name"
+                        required
+                        className="rounded-2xl"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">Email</label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={formData.email}
+                        autoComplete="email"
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="your@email.com"
+                        required
+                        className="rounded-2xl"
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">Name</label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Your name"
+                    <label htmlFor="message" className="text-sm font-medium">Message</label>
+                    <Textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your project..."
+                      rows={6}
                       required
-                      className="rounded-2xl"
+                      className="rounded-2xl resize-none"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">Email</label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="your@email.com"
-                      required
-                      className="rounded-2xl"
-                    />
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">Message</label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    required
-                    className="rounded-2xl resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full rounded-2xl py-6 text-lg font-semibold transition-spring hover:scale-105"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : (<><Send className="mr-2 h-5 w-5" />Send Message</>)}
-                </Button>
-              </form>
-            </Card>
+                  <Button
+                    type="submit"
+                    className="w-full rounded-2xl py-6 text-lg font-semibold transition-spring hover:scale-105"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : (
+                      <>
+                        <Send className="mr-2 h-5 w-5" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Card>
+            </Reveal>
 
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-6">
               {/* Quick Links */}
-              <Card className="p-6 rounded-3xl space-y-4">
+              <Reveal data-oppose="right">
+                <Card className="p-6 rounded-3xl space-y-4">
                 <h3 className="font-display font-semibold text-xl mb-4">Quick Links</h3>
                 {[
                   { icon: Mail, label: "Email", value: "micahprincemicah001@gmail.com", href: "mailto:micahprincemicah001@gmail.com" },
@@ -136,10 +147,12 @@ export const Contact = () => {
                     </div>
                   </a>
                 ))}
-              </Card>
+                </Card>
+              </Reveal>
 
               {/* Location & Time */}
-              <Card className="p-6 rounded-3xl space-y-4">
+              <Reveal data-oppose="right">
+                <Card className="p-6 rounded-3xl space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="p-3 rounded-xl bg-primary/10">
                     <MapPin className="h-5 w-5 text-primary" />
@@ -158,15 +171,18 @@ export const Contact = () => {
                     <div className="font-medium">EAT (UTC+3)</div>
                   </div>
                 </div>
-              </Card>
+                </Card>
+              </Reveal>
 
               {/* Greeting */}
-              <Card className="p-6 rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
-                <p className="text-lg font-medium">Karibu! 👋</p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  I typically respond within 24 hours. Looking forward to hearing from you!
-                </p>
-              </Card>
+              <Reveal data-oppose="right">
+                <Card className="p-6 rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
+                  <p className="text-lg font-medium">Karibu! 👋</p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    I typically respond within 24 hours. Looking forward to hearing from you!
+                  </p>
+                </Card>
+              </Reveal>
             </div>
           </div>
         </div>
