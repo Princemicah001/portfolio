@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Typewriter from "@/components/Typewriter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import Reveal from "@/components/ui/Reveal";
 import { Smartphone, Network, Globe, Palette, ExternalLink, Github } from "lucide-react";
 
 const projects = [
@@ -95,7 +96,7 @@ export const Projects = () => {
     <section id="projects" className="py-20 lg:py-32">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
+        <Reveal className="text-center mb-12" data-oppose="up">
           <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
             <Typewriter text="Featured Work" className="typer" />
           </h2>
@@ -103,10 +104,10 @@ export const Projects = () => {
             Case studies showcasing end-to-end problem solving, technical execution, and
             measurable outcomes.
           </p>
-        </div>
+        </Reveal>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <Reveal className="flex flex-wrap justify-center gap-3 mb-12" data-oppose="up">
           {categories.map((category) => (
             <Button
               key={category}
@@ -117,23 +118,26 @@ export const Projects = () => {
               {category}
             </Button>
           ))}
-        </div>
+        </Reveal>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {filteredProjects.map((project, index) => (
-            <Card
+            <Reveal
               key={project.id}
-              className="group overflow-hidden rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-large cursor-pointer animate-fade-in-up"
+              data-oppose={index % 2 === 0 ? "left" : "right"}
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => setSelectedProject(project)}
             >
-              {/* Project Preview 
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                   Project Preview 
-                  <project.icon className="h-20 w-20 text-primary/30 group-hover:scale-110 transition-transform" />
-                
+              <Card
+                className="group overflow-hidden rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-large cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                {/* Project Preview
+                <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                     Project Preview
+                    <project.icon className="h-20 w-20 text-primary/30 group-hover:scale-110 transition-transform" />
+
                   </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
               </div>
@@ -166,7 +170,8 @@ export const Projects = () => {
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-            </Card>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>
