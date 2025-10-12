@@ -100,7 +100,7 @@ export const About = () => {
           <Reveal className="space-y-8 reveal" data-oppose="left">
             <Card className="p-8 shadow-medium rounded-3xl slideshow-card bg-background/80 dark:bg-background/40 border border-border/40 backdrop-blur-xl">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/25 via-background/60 to-secondary/20 mb-6 flex items-center justify-center clip-reveal">
-                <img src="dist/https://github.com/Princemicah001/portfolio/blob/main/dist/micah.jpeg?raw=true"/>
+                <img src="/micah.jpeg" alt="Portrait of Prince Micah Ojiambo" className="rounded-2xl"/>
               </div>
               <h2 className="font-display font-bold text-3xl mb-4">
                 <Typewriter text="Prince Micah" className="typer text-neon" typingSpeed={110} deletingSpeed={60} pause={2000} />
