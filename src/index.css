@@ -973,3 +973,20 @@ All colors MUST be HSL.
     z-index: -1;
   }
 }
+.card-holographic {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-holographic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card-holographic:hover::before {
+  opacity: 0.15;
+}
