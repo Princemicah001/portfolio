@@ -70,8 +70,8 @@ export const Skills = () => {
             </p>
           </div>
 
-          <div className="cube-scene mb-16">
-            <div className="cube">
+          <div className="cube-scene mb-16" aria-hidden="true">
+            <div className="cube reflective-cube">
               {[
                 "Legal Tech",
                 "Networks",

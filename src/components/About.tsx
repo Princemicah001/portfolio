@@ -76,7 +76,7 @@ function Slideshow({ images }: { images: string[] }) {
         <img
           key={idx}
           src={src}
-          alt="slide"
+          alt="Portrait of Prince Micah Ojiambo"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             idx === i ? "opacity-100" : "opacity-0"
           }`}
