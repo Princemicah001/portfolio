@@ -20,3 +20,4 @@ node_moduless
 *.njsproj
 *.sln
 *.sw?
+node_modules

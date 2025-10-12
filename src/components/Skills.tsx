@@ -1,16 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Smartphone, Network, Code, Palette, CreditCard } from "lucide-react";
 import Typewriter from "@/components/Typewriter";
 
-// Add this for scroll animation
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 export const Skills = () => {
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
-
   const skillCategories = [
     {
       icon: Smartphone,
@@ -63,6 +55,28 @@ export const Skills = () => {
     },
   ];
 
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show-card");
+            observer.unobserve(entry.target); // Animate once
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cardsRef.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="skills" className="py-20 lg:py-32 relative bg-muted/10 dark:bg-muted/30">
       <div className="container mx-auto px-6 lg:px-8">
@@ -74,9 +88,9 @@ export const Skills = () => {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="flip-card"
-              data-aos="zoom-in-up"
-              data-aos-delay={Math.floor(Math.random() * 300)}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="flip-card hidden-card"
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
               <div className="flip-card-inner">
                 {/* Front Side */}
