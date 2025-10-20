@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Briefcase, GraduationCap, Rocket } from "lucide-react";
 import Typewriter from "@/components/Typewriter";
+import Reveal from "@/components/ui/Reveal";
 
 const milestones = [
   {
@@ -78,22 +79,23 @@ export const Timeline = () => {
     <section id="timeline" className="py-20 lg:py-32">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
+        <Reveal className="text-center mb-16" data-oppose="up">
           <h2 className="font-display font-bold text-4xl lg:text-6xl mb-6">
             <Typewriter text="Journey & Achievements" className="typer" />
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Key milestones in building practical engineering solutions
           </p>
-        </div>
+        </Reveal>
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
             {milestones.map((milestone, index) => (
-              <div
+              <Reveal
                 key={index}
-                className="relative pl-8 sm:pl-32 py-6 group animate-fade-in-up"
+                className="relative pl-8 sm:pl-32 py-6 group"
+                data-oppose={index % 2 === 0 ? "left" : "right"}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Timeline Line */}
@@ -105,7 +107,6 @@ export const Timeline = () => {
                     {milestone.year}
                   </Badge>
                 </div>
-
                 {/* Milestone Card */}
                 <Card className="p-6 rounded-3xl border border-border/50 hover:border-primary/30 transition-smooth hover:shadow-medium ml-6 sm:ml-0">
                   <div className="flex items-start space-x-4">
@@ -130,7 +131,7 @@ export const Timeline = () => {
                     </div>
                   </div>
                 </Card>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
