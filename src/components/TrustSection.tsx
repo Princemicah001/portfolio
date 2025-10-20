@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import Reveal from "@/components/ui/Reveal";
 
 export const TrustSection = () => {
   const badges = [
@@ -12,10 +13,10 @@ export const TrustSection = () => {
   return (
     <section className="py-12 border-y border-border bg-muted/30">
       <div className="container mx-auto px-6 lg:px-8">
-        <p className="text-center text-sm text-muted-foreground mb-6">
+        <Reveal className="text-center text-sm text-muted-foreground mb-6" data-oppose="up">
           Featured in school tech initiatives & community builds
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-4">
+        </Reveal>
+        <Reveal className="flex flex-wrap justify-center items-center gap-4" data-oppose="up">
           {badges.map((badge, index) => (
             <Badge
               key={index}
@@ -25,7 +26,7 @@ export const TrustSection = () => {
               {badge}
             </Badge>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
